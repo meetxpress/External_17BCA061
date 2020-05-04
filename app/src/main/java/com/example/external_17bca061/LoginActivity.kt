@@ -1,5 +1,6 @@
 package com.example.external_17bca061
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,9 +24,13 @@ class LoginActivity : AppCompatActivity() {
                 var flag=db.loginUser(username, password)
 
                 if(flag){
+                    var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+                    var editor=preference.edit()
+                    editor.putString("uname",username);
+                    editor.commit()
+
                     startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                     Toast.makeText(this@LoginActivity, "Logged In Successfully.",Toast.LENGTH_SHORT).show()
-
                 }else{
                     Toast.makeText(this@LoginActivity, "Invalid Username or Password.",Toast.LENGTH_SHORT).show()
                 }

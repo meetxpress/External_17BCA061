@@ -1,5 +1,6 @@
 package com.example.external_17bca061
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,8 +12,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Handler().postDelayed({
-            startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-            finish()
-        },1500)
+            var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+            var str=preference.getString("uname","Wrong")
+            if(str.equals("Wrong")){
+                startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                finish()
+            } else {
+                startActivity(Intent(this@MainActivity, HomeActivity::class.java))
+                finish()
+            }
+        },1000)
     }
 }

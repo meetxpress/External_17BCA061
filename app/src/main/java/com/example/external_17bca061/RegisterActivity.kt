@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
+import androidx.appcompat.view.SupportActionModeWrapper
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -12,6 +13,7 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         BtnRegister.setOnClickListener {
             if((RegName.text.toString() == " ") && (RegEmail.text.toString() == " ") && (RegMobNo.text.toString() == " ") && (RegPassword.text.toString() == " ")){
