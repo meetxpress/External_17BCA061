@@ -16,9 +16,23 @@ class LoginActivity : AppCompatActivity() {
             if((LoginUsername.text.toString() == " ") && (LoginPassword.text.toString() == " ")){
                 Toast.makeText(this@LoginActivity, "Required Fields are missing.", Toast.LENGTH_LONG).show()
             } else {
-                if ((LoginUsername.text.toString() == "admin") && (LoginPassword.text.toString() == "admin")) {
+                var username = LoginUsername.text.toString()
+                var password = LoginPassword.text.toString()
+
+                var db=DatabaseHelper(this@LoginActivity)
+                var flag=db.loginUser(username, password)
+
+                if(flag){
                     startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                    Toast.makeText(this@LoginActivity, "Logged In Successfully.",Toast.LENGTH_SHORT).show()
+
+                }else{
+                    Toast.makeText(this@LoginActivity, "Invalid Username or Password.",Toast.LENGTH_SHORT).show()
                 }
+
+               /* if ((LoginUsername.text.toString() == "admin") && (LoginPassword.text.toString() == "admin")) {
+                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                }*/
             }
         }
 

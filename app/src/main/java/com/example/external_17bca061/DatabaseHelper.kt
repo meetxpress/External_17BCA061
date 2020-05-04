@@ -4,10 +4,8 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteDatabase.openDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
-import android.widget.Toast
-import androidx.annotation.UiThread
 
 class DatabaseHelper(var context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, VERSION) {
     companion object{
@@ -20,9 +18,9 @@ class DatabaseHelper(var context: Context): SQLiteOpenHelper(context, DATABASE_N
         var uMob = "userMob"
         var uPass = "userPassword"
     }
-
+//WHERE ($uEmail LIKE ('%@%.com'))
     override fun onCreate(db: SQLiteDatabase?) {
-        var query="CREATE TABLE $TB_NAME($uId INTEGER PRIMARY KEY AUTOINCREMENT, $uName VARCHAR(20), $uEmail VARCHAR(50) WHERE $uEmail LIKE ('%@%.com'), $uMob VARCHAR(10), $uPass VARCHAR(15))"
+        var query="CREATE TABLE $TB_NAME($uId INTEGER PRIMARY KEY AUTOINCREMENT, $uName VARCHAR(20), $uEmail VARCHAR(50), $uMob VARCHAR(10), $uPass VARCHAR(15))"
         db!!.execSQL(query)
     }
 
@@ -51,17 +49,34 @@ class DatabaseHelper(var context: Context): SQLiteOpenHelper(context, DATABASE_N
         }
     }
 
-    fun viewData(): ArrayList<ArrayDetails> {
+    fun loginUser(username: String, password: String): Boolean {
+        var db= readableDatabase
+        val columns = arrayOf("*")
+        val selection = "$uId = ? and $uPass = ?"
+        val selectionArgs = arrayOf(username, password)
+        val cursor: Cursor =
+        db.query(TB_NAME, columns, selection, selectionArgs, null, null, null)
+        val count = cursor.count
+        cursor.close()
+        close()
+        if (count > 0) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    fun login_User(): ArrayList<ArrayDetails> {
         var db= readableDatabase
         var cor:Cursor = db.query(TB_NAME,null, null, null,null,null,null,null)
         var arrDD = ArrayList<ArrayDetails>()
 
         while (cor.moveToNext()) {
             var _user_id=cor.getInt(0)
-            var _user_name = cor.getString(1)
-            var _user_email = cor.getString(2)
-            var _user_Mob = cor.getString(3)
-            var p = ArrayDetails(_user_id, _user_name, _user_email, _user_Mob)
+            var _userpassword = cor.getString(4)
+           // var _user_email = cor.getString(2)
+            //var _user_Mob = cor.getString(3)
+            var p = ArrayDetails(_user_id, _userpassword)
             arrDD.add(p)
         }
         return arrDD
