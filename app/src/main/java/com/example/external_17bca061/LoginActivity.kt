@@ -8,12 +8,12 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         BtnLogin.setOnClickListener {
+/*-------17BCA061-------*/
             if((LoginUsername.text.toString() == " ") && (LoginPassword.text.toString() == " ")){
                 Toast.makeText(this@LoginActivity, "Required Fields are missing.", Toast.LENGTH_LONG).show()
             } else {
@@ -28,17 +28,13 @@ class LoginActivity : AppCompatActivity() {
                     var editor=preference.edit()
                     editor.putString("uname",username);
                     editor.commit()
-
+/*-------17BCA061-------*/
                     startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                     Toast.makeText(this@LoginActivity, "Logged In Successfully.",Toast.LENGTH_SHORT).show()
                     finish()
                 }else{
                     Toast.makeText(this@LoginActivity, "Invalid Username or Password.",Toast.LENGTH_SHORT).show()
                 }
-
-               /* if ((LoginUsername.text.toString() == "admin") && (LoginPassword.text.toString() == "admin")) {
-                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
-                }*/
             }
         }
 
@@ -47,3 +43,4 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 }
+/*-------17BCA061-------*/

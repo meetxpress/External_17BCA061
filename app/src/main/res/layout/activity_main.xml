@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     tools:context=".MainActivity">
-
+    <!--==============17BCA061==============-->
 
     <ImageView
         android:id="@+id/imageView"
@@ -19,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon" />
+    <!--==============17BCA061==============-->
 
     <TextView
         android:id="@+id/textView"
@@ -34,4 +35,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+    <!--==============17BCA061==============-->
 </androidx.constraintlayout.widget.ConstraintLayout>
