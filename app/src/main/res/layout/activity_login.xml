@@ -40,7 +40,6 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
     <!--==============17BCA061==============-->
 
-
     <EditText
         android:id="@+id/LoginPassword"
         android:layout_width="0dp"
@@ -60,7 +59,6 @@
         app:layout_constraintTop_toBottomOf="@+id/LoginUsername" />
     <!--==============17BCA061==============-->
 
-
     <Button
         android:id="@+id/BtnLogin"
         android:layout_width="0dp"
@@ -74,23 +72,6 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RegisterLink" />
-    <!--==============17BCA061==============-->
-
-
-    <TextView
-        android:id="@+id/RegisterLink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="222dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="32dp"
-        android:outlineProvider="none"
-        android:text="@string/register"
-        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

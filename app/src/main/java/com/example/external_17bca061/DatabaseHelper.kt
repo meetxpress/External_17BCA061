@@ -11,77 +11,59 @@ class DatabaseHelper(var context: Context): SQLiteOpenHelper(context, DATABASE_N
     companion object{
         var DATABASE_NAME = "DB_Externals"
         var VERSION = 1
-        var TB_NAME = "User_Master"             //for query
-       // var TB_NAME2 = "Details_Master"       //for query2
-        var uId = "userId"
-        var uName = "userName"
-        var uEmail = "userEmail"
-        var uMob = "userMob"
-        var uPass = "userPassword"
+        var TB_NAME = "Customer_Detail"
+        var cId = "Cust_Id"
+        var cName = "Cust_Name"
+        var cunits = "No_Units"
+        var cprice = "No_Mob"
+        var total = "Total"
     }
+/*-------17BCA061-------*/
 
     override fun onCreate(db: SQLiteDatabase?) {
-        var query="CREATE TABLE $TB_NAME($uId INTEGER PRIMARY KEY AUTOINCREMENT, $uName VARCHAR(20), $uEmail VARCHAR(50), $uMob VARCHAR(10), $uPass VARCHAR(15))"
+        var query= "CREATE TABLE $TB_NAME($cId INTEGER PRIMARY KEY AUTOINCREMENT,$cName VARCHAR(20),$cunits INTEGER(3),$cprice INTEGER(3),$total INTEGER(4))"
         db!!.execSQL(query)
-
-        //var query2="CREATE TABLE $TB_NAME2($uId INTEGER PRIMARY KEY AUTOINCREMENT, $uName VARCHAR(20), $uEmail VARCHAR(50), $uMob VARCHAR(10), $uPass VARCHAR(15))"
-        //db!!.execSQL(query2)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        var query="DROP TABLE IF EXISTS $TB_NAME"
+        var query = "DROP TABLE IF EXISTS $TB_NAME"
         db!!.execSQL(query)
         onCreate(db)
     }
+/*-------17BCA061-------*/
 
-    fun registerUser(user_name:String, user_email:String, user_mob:String, user_pass:String): Boolean {
+    fun insertDate(name:String, unit:String, price:String):Boolean {
         var db=writableDatabase
-        var cv= ContentValues()
-
-        cv.put(uName, user_name)
-        cv.put(uEmail, user_email)
-        cv.put(uMob, user_mob)
-        cv.put(uPass, user_pass)
-
-        var a = db.insert(TB_NAME,null, cv)
+        var cv=ContentValues()
+        var t:Int = unit.toInt() * price.toInt()
+        cv.put(cName,name)
+        cv.put(cunits,unit)
+        cv.put(cprice,price)
+        cv.put(total, t)
+        var flag=db.insert(TB_NAME,null,cv)
         db.close()
-        if(a > 0){
-            return true
-        }else{
-            return false
-        }
-    }
-
-    fun loginUser(username: String, password: String): Boolean {
-        var db= readableDatabase
-        val columns = arrayOf("*")
-        val selection = "$uId = ? and $uPass = ?"
-        val selectionArgs = arrayOf(username, password)
-        val cursor: Cursor =
-        db.query("User_Master", columns, selection, selectionArgs, null, null, null)
-        val count = cursor.count
-        cursor.close()
-        close()
-        if (count > 0) {
+        if(flag>0){
             return true
         } else {
             return false
         }
     }
+/*-------17BCA061-------*/
 
-    fun login_User(): ArrayList<ArrayDetails> {
-        var db= readableDatabase
-        var cor:Cursor = db.query(TB_NAME,null, null, null,null,null,null,null)
-        var arrDD = ArrayList<ArrayDetails>()
-
+    fun viewAll():ArrayList<ArrayDetails> {
+        var db=readableDatabase
+        var cor:Cursor=db.query(TB_NAME, null, null, null, null, null, null)
+        var arrAll=ArrayList<ArrayDetails>()
         while (cor.moveToNext()) {
-            var _user_id=cor.getInt(0)
-            var _userpassword = cor.getString(4)
-           // var _user_email = cor.getString(2)
-            //var _user_Mob = cor.getString(3)
-            var p = ArrayDetails(_user_id, _userpassword)
-            arrDD.add(p)
+            var c_id=cor.getInt(0)
+            var c_name=cor.getString(1)
+            var c_units=cor.getString(2)
+            var c_price=cor.getString(3)
+            var c_total=cor.getString(4)
+            var a=ArrayDetails(c_id, c_name, c_units, c_price, c_total)
+            arrAll.add(a)
         }
-        return arrDD
+        return  arrAll
     }
+/*-------17BCA061-------*/
 }

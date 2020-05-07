@@ -20,10 +20,7 @@ class LoginActivity : AppCompatActivity() {
                 var username = LoginUsername.text.toString()
                 var password = LoginPassword.text.toString()
 
-                var db=DatabaseHelper(this@LoginActivity)
-                var flag=db.loginUser(username, password)
-
-                if(flag){
+                if((LoginUsername.text.toString() == "admin") && (LoginPassword.text.toString() == "admin")){
                     var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
                     var editor=preference.edit()
                     editor.putString("uname",username);
@@ -36,10 +33,6 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this@LoginActivity, "Invalid Username or Password.",Toast.LENGTH_SHORT).show()
                 }
             }
-        }
-
-        RegisterLink.setOnClickListener {
-            startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
         }
     }
 }

@@ -12,12 +12,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Handler().postDelayed({
-            /*-------17BCA061-------*/
             var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
             var str=preference.getString("uname","Wrong")
             if(str.equals("Wrong")){
                 startActivity(Intent(this@MainActivity, LoginActivity::class.java))
                 finish()
+/*-------17BCA061-------*/
             } else {
                 startActivity(Intent(this@MainActivity, HomeActivity::class.java))
                 finish()

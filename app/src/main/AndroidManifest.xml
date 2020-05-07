@@ -9,11 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+    <!-- ===========17BCA061=========== -->
         <activity
-            android:name=".RegisterActivity"
-            android:label="Register User"
-            android:parentActivityName=".LoginActivity"/>
-<!--===========17BCA061===========-->
+            android:name=".DisplayActivity"
+            android:label="Display"
+            android:parentActivityName=".HomeActivity"/>
+        <activity
+            android:name=".InsertActivity"
+            android:label="Insert Data"
+            android:parentActivityName=".HomeActivity"/>
+    <!-- ===========17BCA061=========== -->
         <activity
             android:name=".HomeActivity"
             android:label="Home Dashboard" />
@@ -29,7 +34,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--===========17BCA061===========-->
     </application>
-
+    <!-- ===========17BCA061=========== -->
 </manifest>
