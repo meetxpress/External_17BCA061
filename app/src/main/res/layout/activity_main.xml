@@ -28,7 +28,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:text="External Exam Submission of 17BCA061-Meet Patel"
+        android:text="Welcome to MyApp"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"

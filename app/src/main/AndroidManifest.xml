@@ -18,7 +18,7 @@
             android:name=".InsertActivity"
             android:label="Insert Data"
             android:parentActivityName=".HomeActivity"/>
-    <!-- ===========17BCA061=========== -->
+    <!-- ===========ni17BCA061=========== -->
         <activity
             android:name=".HomeActivity"
             android:label="Home Dashboard" />
